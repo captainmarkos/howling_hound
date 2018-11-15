@@ -1,0 +1,34 @@
+%div.container-fluid
+  .user.title.row
+    %h2 Users
+  %br/
+  .user.content.row
+    %table.table.table-hover
+      %tbody
+        %tr
+          %td= button_to 'Create', new_user_path, method: :get, class: 'btn btn-danger'
+
+  .user.content.row
+    %table.table.table-hover
+      %thead
+        %tr
+          %th
+          %th ID
+          %th NAME
+          %th EMAIL
+          %th
+      %tbody
+        - @users.each do |u|
+          %tr
+            %td
+              - if u.image.attachment.blank?
+                = image_tag '/assets/user_default.png', style: 'width: 50px;'
+              - else
+                = image_tag u.image, style: 'width: 50px;'
+
+            %td= link_to "#{u.id}", user_path(u), { class: 'nav-link'}
+            %td= link_to "#{u.first_name} #{u.last_name}", user_path(u), { class: 'nav-link'}
+            %td= link_to "#{u.email}", user_path(u), { class: 'nav-link'}
+            %td
+              = button_to 'Edit', edit_user_path(u.id), method: :get, class: 'btn btn-danger'
+              = button_to 'Delete', user_path(u.id), method: :delete, class: 'btn btn-danger'

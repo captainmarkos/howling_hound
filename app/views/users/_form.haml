@@ -1,0 +1,49 @@
+- if @user.id.blank?
+  - form_path = users_path
+- else
+  - form_path = user_path(@user.id)
+
+= form_with model: @user, url: form_path do |form|
+  .user.content.row
+    %table.table.table-hover
+      %tbody
+        - unless @user.id.blank?
+          %tr
+            %td{colspan: '2'}
+              - if @user.image.attachment.blank?
+                = image_tag '/assets/user_default.png', style: 'width: 50px;'
+              - else
+                = image_tag @user.image, style: 'width: 50px;'
+
+        %tr
+          %td
+            %label{ for: 'email' } Email
+          %td= form.text_field :email
+
+        %tr
+          %td
+            %label{ for: 'first_name' } First Name
+          %td= form.text_field :first_name
+
+        %tr
+          %td
+            %label{ for: 'last_name' } Last Name
+          %td= form.text_field :last_name
+
+        %tr
+          %td
+            %label{ for: 'image' } Image
+          %td
+            = form.file_field :image, accept: 'image/png,image/gif,image/jpeg,image/jpg'
+
+        %tr
+          %td{colspan: '2'}
+            = link_to 'Users List', users_path, class: 'btn btn-danger'
+
+            - if @user.id.blank?
+              = form.button 'Create', class: 'btn btn-danger'
+            - else
+              = form.button 'Save', class: 'btn btn-danger'
+              = link_to 'Add Bank', new_user_bank_account_path(user_id: @user.id), class: 'btn btn-danger'
+
+

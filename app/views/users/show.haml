@@ -1,0 +1,24 @@
+.user.content.row
+  = link_to 'Users List', users_path
+.user.content.row
+  %table.table.table-bordered
+    %tr.summary-header
+      %td{:colspan => "2"}
+        %b User Information
+    %tr
+      %td
+        Email
+      %td
+        %span{:style => "color: #0000ff"}= @user.email
+    %tr
+      %td
+        Name
+      %td
+        %span{:style => "color: #0000ff"}= "#{@user.first_name} #{@user.last_name}"
+
+    %tr
+      %td{:colspan => "2"}
+        = button_to 'Edit', edit_user_path(@user.id), method: :get, class: 'btn btn-danger'
+    %tr
+      %td{:colspan => "2"}
+        %div= link_to "Bank Accounts", user_bank_accounts_path(@user)

@@ -1,0 +1,25 @@
+// Place all the styles related to the user controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user {
+
+  form {
+    display: inline;
+  }
+  &.content {
+    margin: 20px !important;
+  }
+
+  &.title {
+    text-align: center;
+  }
+}
+
+.container {
+    background:red;
+    #id & {
+       background:blue;
+    }
+}
+
